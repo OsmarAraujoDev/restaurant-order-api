@@ -121,11 +121,11 @@ Veja o exemplo em [.env.example](.env.example).
   ```json
   {
     "address": {
-        "street": "Rua Padre Lothar",
+        "street": "Rua Bandeirantes",
         "city": "Rondonópolis",
         "state": "MT",
-        "number": "1136",
-        "observation": "Portão verde"
+        "number": "1000",
+        "observation": "Em frente a sorveteria"
     },
     "paymentMethod": 1,
     "products": [
@@ -141,7 +141,8 @@ Veja o exemplo em [.env.example](.env.example).
             "quantity": 1
         }
     ],
-    "observation": "Estou esperando"}
+    "observation": "Estou esperando"
+  }
 
 - **Listar pedidos:**  
   `GET /orders/`

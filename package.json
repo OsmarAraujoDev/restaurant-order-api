@@ -1,0 +1,26 @@
+{
+  "name": "restaurant-order-api",
+  "version": "1.0.0",
+  "description": "API CRUD de gerenciamento de pedidos para restaurantes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OsmarAraujoDev/restaurant-order-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OsmarAraujoDev/restaurant-order-api/issues"
+  },
+  "homepage": "https://github.com/OsmarAraujoDev/restaurant-order-api#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mysql2": "^3.15.3"
+  }
+}

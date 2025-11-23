@@ -10,10 +10,9 @@ API RESTful de gerenciamento de pedidos para restaurantes com Node.js, Express e
 ## ✨ Funcionalidades
 
 - 👤 Cadastro e Login de usuários
-- 📊 Dashboard com estatísticas de tarefas
-- 🔎 Filtros avançados de tarefas e usuários
+- 📊 CRUD de produtos e pedidos
+- 🔎 Filtros avançados de usuários, produtos e pedidos
 - ✅ Validação de dados com Joi
-- 🧪 Testes automáticos
 
 ---
 

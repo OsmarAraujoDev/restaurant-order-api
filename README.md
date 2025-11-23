@@ -49,8 +49,8 @@ server.js
 ## ⚡ Instalação e Execução
 
 ```bash
-git clone https://github.com/OsmarAraujoDev/task-management-system.git
-cd task-management-system
+git clone https://github.com/OsmarAraujoDev/restaurant-order-api.git
+cd restaurant-order-api
 npm install
 npm start
 ```

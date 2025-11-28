@@ -1,4 +1,5 @@
 const OrderModel = require('../models/order.model');
+const logger = require('../utils/logger');
 
 class OrderService {
     static async create(orderData, products) {
@@ -19,7 +20,7 @@ class OrderService {
 
             return orderId;
         } catch (err) {
-            console.error('Error in OrderService.create(): ', err);
+            logger.error('Error in OrderService.create(): ', err);
             throw new Error('Error trying to create order');
         }
     }
@@ -30,7 +31,7 @@ class OrderService {
 
             return orders;
         } catch (err) {
-            console.error('Error in OrderService.findAll(): ', err);
+            logger.error('Error in OrderService.findAll(): ', err);
             throw new Error('Error trying to find orders');
         }
     }
@@ -44,7 +45,7 @@ class OrderService {
 
             return { isUpdated: order };
         } catch (err) {
-            console.error('Error in OrderService.update(): ', err);
+            logger.error('Error in OrderService.update(): ', err);
             throw new Error('Error trying to update order');
         }
     }
@@ -58,7 +59,7 @@ class OrderService {
 
             return { isDeleted: order };
         } catch (err) {
-            console.error('Error in OrderService.delete(): ', err);
+            logger.error('Error in OrderService.delete(): ', err);
             throw new Error('Error trying to delete order');
         }
     }

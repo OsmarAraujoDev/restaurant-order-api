@@ -1,4 +1,5 @@
 const pool = require('../config/database');
+const logger = require('../utils/logger');
 
 class ProductModel {
 
@@ -14,7 +15,7 @@ class ProductModel {
 
             return result.insertId;
         } catch (err) {
-            console.error('Error in ProductModel.insert(): ', err);
+            logger.error('Error in ProductModel.insert(): ', err);
             throw new Error('Error trying to insert product in the database');
         }
     }
@@ -63,7 +64,7 @@ class ProductModel {
 
             return rows;
         } catch (err) {
-            console.error('Error in ProductModel.select(): ', err);
+            logger.error('Error in ProductModel.select(): ', err);
             throw new Error('Error trying to select products in the database');
         }
     }
@@ -77,7 +78,7 @@ class ProductModel {
 
             return rows;
         } catch (err) {
-            console.error('Error in ProductModel.selectById(): ', err);
+            logger.error('Error in ProductModel.selectById(): ', err);
             throw new Error('Error trying to select product in the database');
         }
     }
@@ -93,7 +94,7 @@ class ProductModel {
 
             return result.affectedRows == 1;
         } catch (err) {
-            console.error('Error in ProductModel.update(): ', err);
+            logger.error('Error in ProductModel.update(): ', err);
             throw new Error('Error trying to update product in the database');
         }
     }
@@ -107,7 +108,7 @@ class ProductModel {
 
             return result.affectedRows == 1;
         } catch (err) {
-            console.error('Error in ProductModel.delete(): ', err);
+            logger.error('Error in ProductModel.delete(): ', err);
             throw new Error('Error trying to delete product in the database');
         }
     }

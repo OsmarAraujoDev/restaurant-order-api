@@ -1,5 +1,6 @@
 const OrderService = require('../services/order.service');
 const orderSchema = require('../validations/order.validations');
+const logger = require('../utils/logger');
 
 class OrderController {
 
@@ -44,7 +45,7 @@ class OrderController {
                 data: { orderId: order } 
             });
         } catch (err) {
-            console.error('Error in OrderController.create(): ', err);
+            logger.error('Error in OrderController.create(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     } 
@@ -75,7 +76,7 @@ class OrderController {
                 data: orders
             });
         } catch (err) {
-            console.error('Error in OrderService.findAll(): ', err);
+            logger.error('Error in OrderService.findAll(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }
@@ -117,7 +118,7 @@ class OrderController {
                 message: 'pedido atualizado com sucesso'
             });
         } catch (err) {
-            console.error('Error in OrderController.update(): ', err);
+            logger.error('Error in OrderController.update(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }
@@ -154,7 +155,7 @@ class OrderController {
                 message: 'pedido deletado com sucesso'
             });
         } catch (err) {
-            console.error('Error in OrderController.delete(): ', err);
+            logger.error('Error in OrderController.delete(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }

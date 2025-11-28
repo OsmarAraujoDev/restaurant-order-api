@@ -1,4 +1,5 @@
 const ProductModel = require('../models/product.model');
+const logger = require('../utils/logger');
 
 class ProductService {
 
@@ -8,7 +9,7 @@ class ProductService {
 
             return { insertId: product };
         } catch (err) {
-            console.error('Error in ProductService.create(): ', err);
+            logger.error('Error in ProductService.create(): ', err);
             throw new Error('Error trying to create product');
         }
     }
@@ -19,7 +20,7 @@ class ProductService {
 
             return products;
         } catch (err) {
-            console.error('Error in ProductService.read(): ', err);
+            logger.error('Error in ProductService.read(): ', err);
             throw new Error('Error trying to read products');
         }
     }
@@ -33,7 +34,7 @@ class ProductService {
 
             return { isUpdated: product };
         } catch (err) {
-            console.error('Error in ProductService.update(): ', err);
+            logger.error('Error in ProductService.update(): ', err);
             throw new Error('Error trying to update product');
         }
     }
@@ -47,7 +48,7 @@ class ProductService {
 
             return { isDeleted: product };
         } catch (err) {
-            console.error('Error in ProductService.delete(): ', err);
+            logger.error('Error in ProductService.delete(): ', err);
             throw new Error('Error trying to delete product');
         }
     }

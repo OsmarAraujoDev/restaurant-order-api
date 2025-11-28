@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/user.model');
+const logger = require('../utils/logger');
 
 class UserService {
     static async create(userData) {
@@ -18,7 +19,7 @@ class UserService {
 
             return { insertId: created };
         } catch (err) {
-            console.error('Error in UserService.create(): ', err);
+            logger.info('Error in UserService.create(): ', err);
             throw new Error('Error trying to create user');
         }
     }
@@ -32,7 +33,7 @@ class UserService {
 
             return { isPasswordValid };
         } catch (err) {
-            console.error('Error in UserService.login(): ', err);
+            logger.info('Error in UserService.login(): ', err);
             throw new Error('Error trying to login user');
         }
     }
@@ -43,7 +44,7 @@ class UserService {
 
             return user;
         } catch (err) {
-            console.error('Error in UserService.findById(): ', err);
+            logger.info('Error in UserService.findById(): ', err);
             throw new Error('Error trying to find user by id');
         }
     }
@@ -57,7 +58,7 @@ class UserService {
 
             return { isUpdated: result };
         } catch (err) {
-            console.error('Error in UserService.update(): ', err);
+            logger.info('Error in UserService.update(): ', err);
             throw new Error(`Failed to update user`);
         }
     }
@@ -71,7 +72,7 @@ class UserService {
 
             return { isDeleted: result };
         } catch (err) {
-            console.error('Error in UserService.update(): ', err);
+            logger.info('Error in UserService.update(): ', err);
             throw new Error(`Failed to update user`);
         }
     }

@@ -1,4 +1,5 @@
 const ProductService = require('../services/product.service');
+const logger = require('../utils/logger');
 const productSchema = require('../validations/product.validations');
 
 class ProductController {
@@ -29,7 +30,7 @@ class ProductController {
                 data: { productId: result.insertId }
             });
         } catch (err) {
-            console.error('Error in ProductController.create(): ', err);
+            logger.error('Error in ProductController.create(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }
@@ -60,7 +61,7 @@ class ProductController {
                 data: products
             });
         } catch (err) {
-            console.error('Error in ProductController.findAll(): ', err);
+            logger.error('Error in ProductController.findAll(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }
@@ -116,7 +117,7 @@ class ProductController {
                 message: 'produto atualizado com sucesso'
             });
         } catch (err) {
-            console.error('Error in ProductController.update(): ', err);
+            logger.error('Error in ProductController.update(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }
@@ -153,7 +154,7 @@ class ProductController {
                 message: 'produto deletado com sucesso'
             });
         } catch (err) {
-            console.error('Error in ProductController.delete(): ', err);
+            logger.error('Error in ProductController.delete(): ', err);
             return res.status(500).json({ success: false, message: 'erro interno' });
         }
     }

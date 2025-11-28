@@ -1,4 +1,5 @@
 const pool = require('../config/database');
+const logger = require('../utils/logger');
 
 class OrderModel {
     static async insert(orderData) {
@@ -19,7 +20,7 @@ class OrderModel {
 
             return result.insertId;
         } catch (err) {
-            console.error('Error in OrderModel.insert(): ', err);
+            logger.error('Error in OrderModel.insert(): ', err);
             throw new Error('Error trying to insert order in the database');
         }
     }
@@ -38,7 +39,7 @@ class OrderModel {
 
             return true;
         } catch (err) {
-            console.error('Error in OrderModel.insertOrderProducts(): ', err);
+            logger.error('Error in OrderModel.insertOrderProducts(): ', err);
             throw new Error('Error trying to insert order products in the database');
         }
     }
@@ -114,7 +115,7 @@ class OrderModel {
 
             return ordersWithProducts;
         } catch (err) {
-            console.error('Error in OrderModel.select(): ', err);
+            logger.error('Error in OrderModel.select(): ', err);
             throw new Error('Error trying to select orders in the database');
         }
     }
@@ -128,7 +129,7 @@ class OrderModel {
 
             return rows;
         } catch (err) {
-            console.error('Error in ProductModel.selectById(): ', err);
+            logger.error('Error in ProductModel.selectById(): ', err);
             throw new Error('Error trying to select product in the database');
         }
     }
@@ -145,7 +146,7 @@ class OrderModel {
 
             return result.affectedRows == 1;
         } catch (err) {
-            console.error('Error in OrderModel.update(): ', err);
+            logger.error('Error in OrderModel.update(): ', err);
             throw new Error('Error trying to update order in the database');
         }
     }
@@ -159,7 +160,7 @@ class OrderModel {
 
             return result.affectedRows == 1;
         } catch (err) {
-            console.error('Error in OrderModel.delete(): ', err);
+            logger.error('Error in OrderModel.delete(): ', err);
             throw new Error('Error trying to delete order in the database');
         }
     }

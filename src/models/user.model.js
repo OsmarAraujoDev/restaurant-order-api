@@ -1,4 +1,5 @@
 const pool = require('../config/database');
+const logger = require('../utils/logger');
 
 class UserModel {
     static async insert(userData) {
@@ -13,7 +14,7 @@ class UserModel {
 
             return result.insertId;
         } catch (err) {
-            console.error('Error in UserModel.insert(): ', err);
+            logger.error('Error in UserModel.insert(): ', err);
             throw new Error('Error trying to insert user in the database');
         }
     }
@@ -30,7 +31,7 @@ class UserModel {
 
             return rows[0];
         } catch (err) {
-            console.error('Error in UserModel.selectByEmail(): ', err);
+            logger.error('Error in UserModel.selectByEmail(): ', err);
             throw new Error('Error trying to fetch user by email in the database');
         }
     }
@@ -46,7 +47,7 @@ class UserModel {
 
             return rows[0];
         } catch (err) {
-            console.error('Error in UserModel.selectByEmail(): ', err);
+            logger.error('Error in UserModel.selectByEmail(): ', err);
             throw new Error('Error trying to fetch user by email in the database');
         }
     }
@@ -62,7 +63,7 @@ class UserModel {
 
             return result.affectedRows == 1;
         } catch (err) {
-            console.error('Error in UserModel.update(): ', err);
+            logger.error('Error in UserModel.update(): ', err);
             throw new Error('Error trying to update user in the database');
         }
     }
@@ -76,7 +77,7 @@ class UserModel {
 
             return result.affectedRows == 1;
         } catch (err) {
-            console.error('Error in UserModel.delete(): ', err);
+            logger.error('Error in UserModel.delete(): ', err);
             throw new Error('Error trying to delete user in the database');
         }
     }

@@ -1,5 +1,6 @@
 const UserService = require('../services/user.service');
 const userSchemas = require('../validations/user.validations');
+const logger = require('../utils/logger');
 
 class UserController {
     static async register(req, res) {
@@ -28,7 +29,7 @@ class UserController {
                 data: { userId: result.insertId }
             });
         } catch (err) {
-            console.error('Error in UserController.register(): ', err);
+            logger.error('Error in UserController.register(): ', err);
             return res.status(500).json({
                 success: false,
                 message: 'erro interno'
@@ -67,7 +68,7 @@ class UserController {
                 message: 'login efetuado com sucesso'
             });
         } catch (err) {
-            console.error('Error in UserController.login(): ', err);
+            logger.error('Error in UserController.login(): ', err);
             return res.status(500).json({
                 success: false,
                 message: 'erro interno'
@@ -101,7 +102,7 @@ class UserController {
                 data: result
             });
         } catch (err) {
-            console.error('Error in UserController.getById(): ', err);
+            logger.error('Error in UserController.getById(): ', err);
             return res.status(500).json({
                 success: false,
                 message: 'erro interno'
@@ -146,7 +147,7 @@ class UserController {
                 message: 'usuário atualizado com sucesso'
             });
         } catch (err) {
-            console.error('Error in UserController.update(): ', err);
+            logger.error('Error in UserController.update(): ', err);
             return res.status(500).json({
                 success: false,
                 message: 'erro interno'
@@ -186,7 +187,7 @@ class UserController {
                 message: 'usuário deletado com sucesso'
             });
         } catch (err) {
-            console.error('Error in UserController.update(): ', err);
+            logger.error('Error in UserController.update(): ', err);
             return res.status(500).json({
                 success: false,
                 message: 'erro interno'

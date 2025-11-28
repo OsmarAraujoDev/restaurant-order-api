@@ -49,7 +49,7 @@ class OrderModel {
         let sqlParams = [];
 
         if (params?.id) {
-            whereClauses.push('id = ?');
+            whereClauses.push('o.id = ?');
             sqlParams.push(params.id);
         }
 
@@ -59,12 +59,12 @@ class OrderModel {
         }
 
         if (params?.created_at_start) {
-            whereClauses.push('created_at >= ?');
+            whereClauses.push('o.created_at >= ?');
             sqlParams.push(params?.created_at_start);
         }
 
         if (params?.created_at_end) {
-            whereClauses.push('created_at <= ?');
+            whereClauses.push('o.created_at <= ?');
             sqlParams.push(params?.created_at_end);
         }
 
@@ -76,44 +76,28 @@ class OrderModel {
         const whereText = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
         try {
-            const [orders] = await pool.query(
-                `SELECT *
-                FROM vw_orders
+            const [rows] = await pool.query(
+                `SELECT 
+	                o.*,
+                    JSON_ARRAYAGG(
+		                JSON_OBJECT(
+			                'product_name', p.name,
+                            'price', po.price,
+                            'quantity', po.quantity
+                        )
+                    ) AS products
+                FROM vw_orders o
+                LEFT JOIN products_orders po ON o.id = po.order_id
+                LEFT JOIN products p ON p.id = po.product_id
                 ${whereText}
+                GROUP BY o.id
                 ORDER BY ${params.sortBy} ${params.sortOrder}
                 LIMIT ${params.limit}
                 OFFSET ${params.offset}`,
                 [sqlParams]
             );
 
-            const [products] = await pool.query(
-                `SELECT 
-	                o.id AS order_id,
-	                p.name AS product_name,
-                    po.price,
-                    po.quantity
-                FROM products_orders po
-                INNER JOIN products p ON p.id = po.product_id
-                INNER JOIN orders o ON o.id = po.order_id 
-                WHERE o.id IN (${orders.map(o => o.id).join(', ')})`
-            );
-
-            const productsByOrder = {};
-            products.forEach(prod => {
-                if (!productsByOrder[prod.order_id]) productsByOrder[prod.order_id] = [];
-                productsByOrder[prod.order_id].push({
-                    product_name: prod.product_name,
-                    price: prod.price,
-                    quantity: prod.quantity
-                });
-            });
-
-            const ordersWithProducts = orders.map(order => ({
-                ...order,
-                products: productsByOrder[order.id] || []
-            }));
-
-            return ordersWithProducts;
+            return rows;
         } catch (err) {
             logger.error('Error in OrderModel.select(): ', err);
             throw new Error('Error trying to select orders in the database');
